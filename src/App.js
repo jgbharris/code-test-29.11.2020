@@ -16,47 +16,44 @@ export default function App() {
             .then((data) => setData(data));
     }, []);
 
-    let transactions = data.transactions;
-    console.log("transactions");
-    console.log(transactions);
-    console.log(typeof transactions);
+    const  transactions = data.transactions;
 
-    let transactionsSortedAmount = transactions
-        ? transactions.sort(function (a, b) {
-            return b.amount.value - a.amount.value;
-        })
-        : null;
+    
 
-        // const transactionsSortedDate = transactions ? transactions.sort((a, b) => b.date - a.date) : null
 
-        const transactionsSortedDate = transactions ? transactions.sort(function compare(a, b) {
-            var dateA = new Date(a.date);
-            var dateB = new Date(b.date);
-            return dateB - dateA;
-          }) : null;
+    // let transactionsSortedCategory = transactions ? transactions.sort(function (a, b) {
+    //     // return a.category_title - b.category_title
+    //     return a["category_title"] - b["category_title "]
+    // }) : null;
 
+    // console.log("transactionsSortedCategory");
+    // console.log(transactionsSortedCategory);
+
+
+    const transactionsSortedDate = transactions ? transactions.sort(function compare(a, b) {
+        var dateA = new Date(a.date);
+        var dateB = new Date(b.date);
+        return dateB - dateA;
+    }) : null;
+
+    const transactionsSortedAmount = transactions ? transactions.sort(function compare(a, b) {
+        var dateA = Number(a.amount.value)
+        var dateB = Number(b.amount.value)
+        return dateA - dateB;
+    }) : null;
+
+    
     console.log("transactionsSortedAmount");
     console.log(transactionsSortedAmount);
     console.log("transactionsSortedDate");
     console.log(transactionsSortedDate);
 
     let smallestExpenses = transactionsSortedAmount
-        ? transactionsSortedAmount.slice(Math.max(transactionsSortedAmount.length - 5, 1))
+        ? transactionsSortedAmount.slice(Math.max(transactions.length - 10, 1))
         : null;
 
-    console.log("smallestExpenses");
-    console.log(smallestExpenses);
-
-    // let stringToDate = transactions ? transactions[0]["date"] : null
-
-    // console.log("stringToDate");
-
-    // console.log(stringToDate);
-
-    // let dateToString = Date.parse(stringToDate)
-
-    // console.log("dateToString");
-    // console.log(dateToString);
+    // console.log("smallestExpenses");
+    // console.log(smallestExpenses);
 
 
     return (
@@ -71,10 +68,11 @@ export default function App() {
                 issuer="visa"
             />
 
-            <button onClick={() => setFilter(!filter)}>TOGGLE 10 SMALLEST</button>
+            <button onClick={() => setFilter(false)}>SHOW ALL</button>
+            <button onClick={() => setFilter(true)}>TOGGLE 10 SMALLEST</button>
 
-            {transactionsSortedAmount && !filter
-                ? transactionsSortedAmount.map((transaction, index) => (
+            {transactionsSortedDate && !filter
+                ? transactionsSortedDate.map((transaction, index) => (
                     <Transaction
                         key={index}
                         category={transaction.category_title}
