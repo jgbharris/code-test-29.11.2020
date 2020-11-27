@@ -7,7 +7,7 @@ import "react-credit-cards/es/styles-compiled.css";
 
 export default function App() {
     const [data, setData] = useState([]);
-    // const [filter, setFilter] = useState(false);
+    const [filter, setFilter] = useState(false);
 
 
     useEffect(() => {
@@ -37,6 +37,25 @@ export default function App() {
     console.log("smallestExpenses");
     console.log(smallestExpenses);
 
+    // let renderedTransactions = transactionsSorted ? transactionsSorted.map((transaction, index) => (
+    //         <Transaction
+    //             key={index}
+    //             category={transaction.category_title}
+    //             date={transaction.date}
+    //             amount={`${transaction.amount.currency_iso}  ${transaction.amount.value}`}
+    //             description={transaction.description}
+    //         />
+    // ))
+
+    if (transactionsSorted) {
+        console.log("if statement 1 working")
+    }
+
+    if (smallestExpenses) {
+        console.log("if statement 2 working")
+    }
+
+
     return (
         <div className="App">
             <UserCard />
@@ -48,8 +67,10 @@ export default function App() {
                 preview={true}
                 issuer="visa"
             />
+            
+            <button onClick={() => setFilter(!filter)}>FILTER 10 SMALLEST</button>
 
-            {transactionsSorted && transactionsSorted
+            {transactionsSorted && !filter
                 ? transactionsSorted.map((transaction, index) => (
                     <Transaction
                         key={index}
@@ -59,7 +80,21 @@ export default function App() {
                         description={transaction.description}
                     />
                 ))
-            : null}
+                : null}
+
+            {smallestExpenses && filter
+                ? smallestExpenses.map((transaction, index) => (
+                    <Transaction
+                        key={index}
+                        category={transaction.category_title}
+                        date={transaction.date}
+                        amount={`${transaction.amount.currency_iso}  ${transaction.amount.value}`}
+                        description={transaction.description}
+                    />
+                ))
+                : null}
+
+
         </div>
     );
 }
