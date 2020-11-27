@@ -37,9 +37,9 @@ export default function App() {
     }) : null;
 
     const transactionsSortedAmount = transactions ? transactions.sort(function compare(a, b) {
-        var dateA = Number(a.amount.value)
-        var dateB = Number(b.amount.value)
-        return dateA - dateB;
+        var amountA = Number(a.amount.value)
+        var amountB = Number(b.amount.value)
+        return amountA - amountB;
     }) : null;
 
     
