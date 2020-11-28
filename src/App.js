@@ -24,13 +24,13 @@ export default function App() {
         return dateB - dateA;
     }) : null;
 
-     console.log("transactionsSortedDate");
+    console.log("transactionsSortedDate");
     console.log(transactionsSortedDate);
 
-    let transactionsClone = [...transactions]
+    let transactionsClone = transactions ? [...transactions] :  null
 
 
- console.log("transactionsClone")
+    console.log("transactionsClone")
     console.log(transactionsClone)
 
     const transactionsSortedAmount = transactionsClone ? transactionsClone.sort(function compare(a, b) {
