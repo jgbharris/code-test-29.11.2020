@@ -16,19 +16,7 @@ export default function App() {
             .then((data) => setData(data));
     }, []);
 
-    const  transactions = data.transactions;
-
-    
-
-
-    // let transactionsSortedCategory = transactions ? transactions.sort(function (a, b) {
-    //     // return a.category_title - b.category_title
-    //     return a["category_title"] - b["category_title "]
-    // }) : null;
-
-    // console.log("transactionsSortedCategory");
-    // console.log(transactionsSortedCategory);
-
+    let transactions = data.transactions;
 
     const transactionsSortedDate = transactions ? transactions.sort(function compare(a, b) {
         var dateA = new Date(a.date);
@@ -36,7 +24,16 @@ export default function App() {
         return dateB - dateA;
     }) : null;
 
-    const transactionsSortedAmount = transactions ? transactions.sort(function compare(a, b) {
+     console.log("transactionsSortedDate");
+    console.log(transactionsSortedDate);
+
+    let transactionsClone = [...transactions]
+
+
+ console.log("transactionsClone")
+    console.log(transactionsClone)
+
+    const transactionsSortedAmount = transactionsClone ? transactionsClone.sort(function compare(a, b) {
         var amountA = Number(a.amount.value)
         var amountB = Number(b.amount.value)
         return amountA - amountB;
@@ -45,15 +42,15 @@ export default function App() {
     
     console.log("transactionsSortedAmount");
     console.log(transactionsSortedAmount);
-    console.log("transactionsSortedDate");
-    console.log(transactionsSortedDate);
+    // console.log("transactionsSortedDate");
+    // console.log(transactionsSortedDate);
 
-    let smallestExpenses = transactionsSortedAmount
-        ? transactionsSortedAmount.slice(Math.max(transactions.length - 10, 1))
+    let smallestExpenses = transactionsClone
+        ? transactionsClone.slice(Math.max(transactionsClone.length - 10, 1))
         : null;
 
-    // console.log("smallestExpenses");
-    // console.log(smallestExpenses);
+    console.log("smallestExpenses");
+    console.log(smallestExpenses);
 
 
     return (
