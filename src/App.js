@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
-import "./styles.css";
 import Card from "react-credit-cards";
 import Transaction from "./Transaction.js";
 import UserCard from "./UserCard.js";
+import "./styles.css";
 import "react-credit-cards/es/styles-compiled.css";
 
 export default function App() {
@@ -42,8 +42,6 @@ export default function App() {
     
     console.log("transactionsSortedAmount");
     console.log(transactionsSortedAmount);
-    // console.log("transactionsSortedDate");
-    // console.log(transactionsSortedDate);
 
     let smallestExpenses = transactionsClone
         ? transactionsClone.slice(Math.max(transactionsClone.length - 10, 1))
@@ -65,8 +63,8 @@ export default function App() {
                 issuer="visa"
             />
 
-            <button onClick={() => setFilter(false)}>SHOW ALL</button>
-            <button onClick={() => setFilter(true)}>TOGGLE 10 SMALLEST</button>
+            <button className="showAllButton filterButton" onClick={() => setFilter(false)}>SHOW ALL</button>
+            <button className="smallestTransactionsButton filterButton" onClick={() => setFilter(true)}>TOGGLE 10 SMALLEST</button>
 
             {transactionsSortedDate && !filter
                 ? transactionsSortedDate.map((transaction, index) => (

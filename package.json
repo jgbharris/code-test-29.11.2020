@@ -6,13 +6,16 @@
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
+    "axios": "0.21.0",
+    "chai": "^4.2.0",
+    "enzyme-adapter-react-15": "^1.4.2",
+    "prop-types": "15.7.2",
     "react": "^17.0.1",
+    "react-credit-cards": "0.8.3",
     "react-dom": "^17.0.1",
     "react-scripts": "4.0.1",
-    "web-vitals": "^0.2.4",
-    "axios": "0.21.0",
-    "prop-types": "15.7.2",
-    "react-credit-cards": "0.8.3"
+    "sinon": "^9.2.1",
+    "web-vitals": "^0.2.4"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -37,5 +40,9 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "enzyme": "^3.11.0",
+    "enzyme-adapter-react-16": "^1.15.5"
   }
 }

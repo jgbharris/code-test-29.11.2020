@@ -1,9 +1,9 @@
 import React from "react";
-import "./styles2.css";
+import "./styles.css";
 
 export default function Transaction(props) {
   return (
-    <div className="card">
+    <div className="card transaction" data-testid="transaction">
       <div className="card-body">
         <p className="card-category">{props.category}</p>
         <p className="card-amount">{props.amount}</p>
