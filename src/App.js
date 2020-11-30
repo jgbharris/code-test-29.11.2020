@@ -24,14 +24,8 @@ export default function App() {
         return dateB - dateA;
     }) : null;
 
-    console.log("transactionsSortedDate");
-    console.log(transactionsSortedDate);
-
     let transactionsClone = transactions ? [...transactions] :  null
 
-
-    console.log("transactionsClone")
-    console.log(transactionsClone)
 
     const transactionsSortedAmount = transactionsClone ? transactionsClone.sort(function compare(a, b) {
         var amountA = Number(a.amount.value)
@@ -39,16 +33,10 @@ export default function App() {
         return amountA - amountB;
     }) : null;
 
-    
-    console.log("transactionsSortedAmount");
-    console.log(transactionsSortedAmount);
 
     let smallestExpenses = transactionsClone
         ? transactionsClone.slice(Math.max(transactionsClone.length - 10, 1))
         : null;
-
-    console.log("smallestExpenses");
-    console.log(smallestExpenses);
 
 
     return (
