@@ -4,8 +4,8 @@ import Photo from "./Photo.jpg";
 
 export default function UserCard(props) {
   return (
-    <div className="user-card">
-      <img src={Photo} alt="Card image"></img>
+    <div className="user-card" >
+      <img src={Photo} alt="user-profile"></img>
     </div>
   );
 }

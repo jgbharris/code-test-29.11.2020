@@ -4,6 +4,7 @@ import Transaction from "./Transaction.js";
 import UserCard from "./UserCard.js";
 import "./styles.css";
 import "react-credit-cards/es/styles-compiled.css";
+/* eslint-disable no-unused-expressions */
 
 export default function App() {
     const [data, setData] = useState([]);
@@ -26,16 +27,25 @@ export default function App() {
 
     let transactionsClone = transactions ? [...transactions] :  null
 
-
+    // eslint-disable-next-line
     const transactionsSortedAmount = transactionsClone ? transactionsClone.sort(function compare(a, b) {
         var amountA = Number(a.amount.value)
         var amountB = Number(b.amount.value)
         return amountA - amountB;
     }) : null;
 
+    
+    let expenses = []
+    
+    if (transactionsClone) {
+        for (let i = 0; i < transactionsClone.length; i++) {
+            transactionsClone[i]["amount"]["value"] > 0 ? null : expenses.push(transactionsClone[i])
+          };
+    }
+    
 
-    let smallestExpenses = transactionsClone
-        ? transactionsClone.slice(Math.max(transactionsClone.length - 10, 1))
+    let smallestExpenses = expenses
+        ? expenses.slice(Math.max(expenses.length - 10, 1))
         : null;
 
 
@@ -52,7 +62,7 @@ export default function App() {
             />
 
             <button className="showAllButton filterButton" onClick={() => setFilter(false)}>SHOW ALL</button>
-            <button className="smallestTransactionsButton filterButton" onClick={() => setFilter(true)}>TOGGLE 10 SMALLEST</button>
+            <button className="smallestTransactionsButton filterButton" onClick={() => setFilter(true)}>SHOW 10 SMALLEST</button>
 
             {transactionsSortedDate && !filter
                 ? transactionsSortedDate.map((transaction, index) => (
